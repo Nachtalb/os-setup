@@ -35,3 +35,6 @@ su archie -c "fish -c dotfiles_install_symlinks"
 # Run update-neovim-nightly.sh script
 print_message $GREEN "  Running update-neovim-nightly.sh script..."
 su archie -c "fish -c 'yes | update-neovim-nightly'"
+
+print_message $ORANGE "  You can start TMUX with either 'tmux' or 'st' (reattach existing sessions) commands."
+print_message $ORANGE "  After starting TMUX for the first time it CTRL-B then I to install it's plugins."

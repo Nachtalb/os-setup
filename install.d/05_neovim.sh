@@ -23,7 +23,9 @@ print_message $GREEN "  Setting up NEOVIM"
 su archie -c "ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim"
 su archie -c "ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json"
 su archie -c "ln -sf ~/.vim/.vimrc ~/.vimrc"
-su archie -c 'nvim -c "PlugInstall" -c "qa"'
-su archie -c 'nvim -c "PlugInstall" -c "qa"'
-su archie -c 'nvim -c "CocUpdate" -c "qa"'
-su archie -c 'nvim -c "UpdateRemotePlugins" -c "qa"'
+su archie -c 'nvim -i NONE -c "PlugInstall" -c "qa"'
+su archie -c 'nvim -i NONE -c "UpdateRemotePlugins" -c "qa"'
+
+print_message $ORANGE "  You can start NEOVIM with either 'nvim' or 'vim' (auto load Session.vim if it exists)."
+print_message $ORANGE "  During the first start remaining dependencies will be installed automatically."
+print_message $ORANGE "  NEOVIM nightly is installed, use 'update-neovim-nightly' to update your NEOVIM."
