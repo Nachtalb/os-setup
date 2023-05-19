@@ -45,6 +45,7 @@ npm
 opencv
 openjpeg2
 p7zip
+pacman-contrib
 pacman-mirrorlist
 plocate
 pyenv
@@ -59,6 +60,7 @@ run-parts
 sqlite
 starship
 tmux
+tree-sitter
 tzdata
 unzip
 wget
