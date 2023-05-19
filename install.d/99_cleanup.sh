@@ -12,7 +12,11 @@ print_message $GREEN "  Removing 'paru' directory..."
 rm -rf /home/archie/paru
 
 print_message $RED "Setting password for 'archie'..."
-password=$(openssl rand -base64 6 | tr -dc 'a-zA-Z0-9' | head -c8)
-echo "archie:$password" | chpasswd
-print_message $RED "  Password: $password"
-print_message $RED "  Login with the user archie and use 'passwd' to change the password."
+if [[ " $* " == *" --noconfirm "* ]]; then
+  password=$(openssl rand -base64 6 | tr -dc 'a-zA-Z0-9' | head -c8)
+  echo "archie:$password" | chpasswd
+  print_message $RED "  Password: $password"
+  print_message $RED "  Login with the user archie and use 'passwd' to change the password."
+else
+  passwd archie
+fi

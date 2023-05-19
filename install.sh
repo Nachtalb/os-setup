@@ -2,5 +2,5 @@
 set -e  # Exit immediately on error
 
 for file in $(dirname $0)/install.d/*.sh; do
-    source $file
+    source $file $1
 done
