@@ -2,6 +2,22 @@
 
 set -e  # Exit immediately on error
 
+# Help message
+show_help() {
+    echo "Usage: $0 [options]"
+    echo "Options:"
+    echo "  --help       Display this help message"
+    echo "  --noconfirm  Skip confirmation prompts"
+    echo "  --[stage]    Select a specific installation stage (e.g., --05)"
+    # Add more options and descriptions as needed
+}
+
+# Check if "--help" option is provided
+if [[ "$*" == *--help* || "$*" == *-h* ]]; then
+    show_help
+    exit 0
+fi
+
 # Color variables
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
