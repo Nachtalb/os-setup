@@ -7,8 +7,8 @@ the installation of essential packages, dotfiles, and a Neovim configuration.
 ## Features
 
 - ✨ Automated installation of dependencies for Arch Linux.
-- ✨ Easy setup of dotfiles from the Nachtalb/dotfiles repository.
-- ✨ Configuration of Neovim using the Nachtalb/vimconfig.
+- ✨ Easy setup of dotfiles from the [Nachtalb/dotfiles][dotfiles] repository.
+- ✨ Configuration of Neovim using the [Nachtalb/vimconfig][vimconfig].
 
 ## Installation
 
@@ -57,12 +57,16 @@ confirmation prompts, you can use the following command:
 ./install.sh --05 --noconfirm
 ```
 
-> You can also use the same stage selection method with the web-install.sh
-> script.
+> You can also use the same stage selection method with the
+> [web-install.sh](#quick-installation) script.
 
 ## Customization
 
 Feel free to customize the scripts in the "install.d" folder to suit your
-preferences. You can also modify the dotfiles from the Nachtalb/dotfiles
-(installed to `/home/archie/.config/fish`) repository, the Neovim configuration
-from the Nachtalb/vimconfig (installed to `/home/archie/.vim`) repository.
+preferences. You can also modify the dotfiles from the
+[Nachtalb/dotfiles][dotfiles] (installed to `/home/archie/.config/fish`)
+repository, the Neovim configuration from the [Nachtalb/vimconfig][vimconfig]
+(installed to `/home/archie/.vim`) repository.
+
+[dotfiles]: https://github.com/Nachtalb/dotfiles
+[vimconfig]: https://github.com/Nachtalb/vimconfig
