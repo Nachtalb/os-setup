@@ -9,6 +9,7 @@ cronie
 curl
 ctags
 dateutils
+deno
 diffutils
 exa
 expac
