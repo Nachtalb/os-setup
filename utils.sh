@@ -12,10 +12,6 @@ print_message() {
   shift 2
   local message=$@
 
-  echo invert "${invert}"
-  echo color "${color}"
-  echo message "${message}"
-
   echo -e "${color}${invert}${message}${NC}"
 }
 
