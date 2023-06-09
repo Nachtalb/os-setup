@@ -20,7 +20,7 @@ file_to_oneline() {
   local file=$1
 
   IFS=$'\n'  # Set the internal field separator to newline
-  array=(cat $file)  # Convert file content to array
+  array=($(cat $file))  # Convert file content to array
   IFS=" "; echo "${array[*]}"  # Join array elements into a single string
 }
 
