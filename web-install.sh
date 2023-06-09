@@ -38,7 +38,13 @@ print_message $GREEN $INVERT "Starting web-install script."
 
 print_message $GREEN "  Downloading installer..."
 sudo pacman -Sy git --needed $noconfirm
-git clone https://github.com/Nachtalb/os-setup /tmp/os-setup
+target_dir="/tmp/os-setup"
+if [ -d "${target_dir}" ]; then
+  print_message $BLUE "  OS-Setup was already downloaded to '${target_dir}'"
+else
+  git clone https://github.com/Nachtalb/os-setup "${target_dir}"
+fi
+
 wd=$(pwd)
 cd /tmp/os-setup
 
