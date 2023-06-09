@@ -10,6 +10,8 @@ else
     print_message $GREEN "  User 'archie' already exists."
 fi
 
-echo "archie ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
+if ! sudo -lU archie | grep -q "(ALL:ALL) NOPASSWD: ALL"; then
+  echo "archie ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
+fi
 
 print_message $GREEN "  User 'archie' created successfully."

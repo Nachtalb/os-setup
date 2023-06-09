@@ -20,56 +20,57 @@ else
 fi
 
 print_message $GREEN "  Downloading sway config..."
-git clone https://github.com/Nachtalb/sway.git ~/.config/sway
-wd0=$(pwd)
-cd ~/.config/sway
+config_dir="/home/archie/.config"
+sway_dir="${config_dir}/sway"
+if [ ! -d $sway_dir ]; then
+  su archie -c "git clone https://github.com/Nachtalb/sway.git ${sway_dir}"
+fi
 
 print_message $GREEN "  Installing GO dependencies"
-go get github.com/sirupsen/logrus
-go get github.com/Difrex/gosway/ipc
+su archie -c "cd ${sway_dir} && go get github.com/sirupsen/logrus"
+su archie -c "cd ${sway_dir} && go get github.com/Difrex/gosway/ipc"
 
 # Building GO deps
-wd1=$(pwd)
-cd scripts
-go build -o ~/.local/bin/tr_in transparent_inctive.go
-cd "${wd1}"
+su archie -c "cd ${sway_dir}/scripts/ && go build -o /home/archie/.local/bin/tr_in transparent_inctive.go"
 
 print_message $GREEN "  Setting up sway && waybar"
 
 # Sway Config
-ln  -s  ~/.config/sway/conf-available/workspaces.conf           ~/.config/sway/conf-enabled/00-workspaces.conf
-ln  -s  ~/.config/sway/conf-available/autostart.conf            ~/.config/sway/conf-enabled/01-autostart.conf
-ln  -s  ~/.config/sway/conf-available/fonts.conf                ~/.config/sway/conf-enabled/02-fonts.conf
-ln  -s  ~/.config/sway/conf-available/keybindings.conf          ~/.config/sway/conf-enabled/03-keybindings.conf
-ln  -s  ~/.config/sway/conf-available/layout.conf               ~/.config/sway/conf-enabled/04-key-layout.conf
-ln  -s  ~/.config/sway/conf-available/terminal-dark.conf        ~/.config/sway/conf-enabled/05-terminal.conf
-ln  -s  ~/.config/sway/conf-available/colors-dark.conf          ~/.config/sway/conf-enabled/20-colors.conf
-ln  -s  ~/.config/sway/conf-available/gaps.conf                 ~/.config/sway/conf-enabled/30-gaps.conf
-ln  -s  ~/.config/sway/conf-available/idle.conf                 ~/.config/sway/conf-enabled/40-idle.conf
-ln  -s  ~/.config/sway/conf-available/screenshots.conf          ~/.config/sway/conf-enabled/50-screenshots.conf
-ln  -s  ~/.config/sway/conf-available/wallpapers.conf           ~/.config/sway/conf-enabled/80-wallpapers.conf
-ln  -s  ~/.config/sway/conf-available/colors-dark.conf          ~/.config/sway/conf-enabled/colors-dark.conf
-ln  -s  ~/.config/sway/conf-available/mako-dark.conf            ~/.config/sway/conf-enabled/mako-dark.conf
-ln  -s  ~/.config/sway/conf-available/terminal-dark.conf        ~/.config/sway/conf-enabled/terminal-dark.conf
-ln  -s  ~/.config/sway/conf-available/transparent-windows.conf  ~/.config/sway/conf-enabled/transparent-windows.conf
+su archie -c "ln  -sf  ${sway_dir}/conf-available/workspaces.conf           ${sway_dir}/conf-enabled/00-workspaces.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/autostart.conf            ${sway_dir}/conf-enabled/01-autostart.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/fonts.conf                ${sway_dir}/conf-enabled/02-fonts.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/keybindings.conf          ${sway_dir}/conf-enabled/03-keybindings.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/layout.conf               ${sway_dir}/conf-enabled/04-key-layout.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/terminal-dark.conf        ${sway_dir}/conf-enabled/05-terminal.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/colors-dark.conf          ${sway_dir}/conf-enabled/20-colors.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/gaps.conf                 ${sway_dir}/conf-enabled/30-gaps.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/idle.conf                 ${sway_dir}/conf-enabled/40-idle.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/screenshots.conf          ${sway_dir}/conf-enabled/50-screenshots.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/wallpapers.conf           ${sway_dir}/conf-enabled/80-wallpapers.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/colors-dark.conf          ${sway_dir}/conf-enabled/colors-dark.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/mako-dark.conf            ${sway_dir}/conf-enabled/mako-dark.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/terminal-dark.conf        ${sway_dir}/conf-enabled/terminal-dark.conf"
+su archie -c "ln  -sf  ${sway_dir}/conf-available/transparent-windows.conf  ${sway_dir}/conf-enabled/transparent-windows.conf"
 
 # Waybar Config
-ln  -s  ~/.config/sway/waybar-available/config          ~/.config/sway/waybar-enabled/config
-ln  -s  ~/.config/sway/waybar-available/style-dark.css  ~/.config/sway/waybar-enabled/style.css
-
+su archie -c "ln  -sf  ${sway_dir}/waybar-available/config          ${sway_dir}/waybar-enabled/config"
+su archie -c "ln  -sf  ${sway_dir}/waybar-available/style-dark.css  ${sway_dir}/waybar-enabled/style.css"
 
 print_message $GREEN "  Installing ranger addons..."
-ranger --copy-config all
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-echo "# File icons
-default_linemode devicons
+su archie -c 'ranger --copy-config all'
+ranger_dir="${config_dir}/ranger/"
+if [ ! -d "${ranger_dir}/plugins/ranger_devicons" ]; then
+  suarchie -c "git clone https://github.com/alexanderjeurissen/ranger_devicons ${ranger_dir}/plugins/ranger_devicons"
+fi
 
-# Image preview
+add_text_if_pattern_not_found "${ranger_dir}/rc.conf" "devicons" '# File icons
+default_linemode devicons'
+
+add_text_if_pattern_not_found "${ranger_dir}/rc.conf" "ueberzug" '# Image preview
 set preview_images true
-set preview_images_method ueberzug" >> ~/.config/ranger/rc.conf`
+set preview_images_method ueberzug'
+
 
 print_message $GREEN "  Configuring 'foot' (terminal)"
-mkdir ~/.config/foot -p
-ln -s ~/.config/sway/foot/foot.ini ~/.config/foot/
-
-cd "${wd0}"
+su archie -c "mkdir '${config_dir}/foot' -p"
+su archie -c "ln -fs ${sway_dir}/foot/foot.ini ${config_dir}/foot/

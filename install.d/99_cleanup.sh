@@ -6,6 +6,7 @@ print_message $GREEN "  Remove no password sudo privilege for 'archie'..."
 sed -i 's/archie ALL=(ALL:ALL) NOPASSWD: ALL/archie ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 print_message $GREEN "  Changing shell to Fish for 'archie'..."
+chsh root -s /usr/bin/fish
 chsh archie -s /usr/bin/fish
 
 print_message $GREEN "  Removing 'paru' directory..."

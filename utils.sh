@@ -32,3 +32,24 @@ check_arch_linux() {
         fi
     fi
 }
+
+# Function to check if a file contains a specific pattern
+file_contains_pattern() {
+    local file=$1
+    local pattern=$2
+    if [ -f "$file" ] && grep -q "$pattern" "$file"; then
+        return 0  # Pattern found
+    else
+        return 1  # Pattern not found
+    fi
+}
+
+# Function to add text to a file if the pattern doesn't exist
+add_text_if_pattern_not_found() {
+    local file=$1
+    local pattern=$2
+    local text=$3
+    if ! file_contains_pattern "$file" "$pattern"; then
+        echo "$text" >> "$file"
+    fi
+}

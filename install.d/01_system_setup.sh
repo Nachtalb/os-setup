@@ -25,10 +25,15 @@ rustup default stable
 su archie -c "rustup default stable"
 
 if ! command -v paru >/dev/null 2>&1; then
+  target_dir="/home/archie/paru"
   print_message $GREEN "  Cloning 'paru' repository..."
-  su archie -c "git clone https://aur.archlinux.org/paru.git /home/archie/paru"
+  if [ ! -d "${target_dir}" ]; then
+    su archie -c "git clone https://aur.archlinux.org/paru.git ${target_dir}"
+  else
+    su archie -c "cd ${target_dir} && git pull -r"
+  fi
   print_message $GREEN "  Building and installing 'paru'..."
-  su archie -c "cd /home/archie/paru && makepkg -si --needed $noconfirm"
+  su archie -c "cd ${target_dir} && makepkg -si --needed $noconfirm"
 else
   print_message $GREEN "  'paru' is already installed."
 fi

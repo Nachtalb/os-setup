@@ -41,11 +41,12 @@ sudo pacman -Sy git --needed $noconfirm
 target_dir="/tmp/os-setup"
 if [ -d "${target_dir}" ]; then
   print_message $BLUE "  OS-Setup was already downloaded to '${target_dir}'"
+  cd $target_dir
+  git pull -r
 else
   git clone https://github.com/Nachtalb/os-setup "${target_dir}"
 fi
 
-wd=$(pwd)
 cd /tmp/os-setup
 
 # ------------------------------------------------------------------------------
@@ -57,5 +58,4 @@ if [[ " $* " == *" --clean "* ]]; then
     rm -rf /tmp/os-setup
 fi
 
-cd "${wd}"
 print_message $GREEN $INVERT "Installation completed successfully."
