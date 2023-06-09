@@ -28,21 +28,23 @@ check_arch_linux
 
 # Check if "--[stage]" option is provided
 if [[ "$*" == --[0-9][0-9] ]]; then
-    stage_option=$(echo "$*" | grep -oE -- '--[0-9]{2}' | cut -c 3-)
-    stage_file=$(dirname $0)/install.d/"$stage_option"*
+  stage_option=$(echo "$*" | grep -oE -- '--[0-9]{2}' | cut -c 3-)
+  stage_file=$(dirname $0)/install.d/"$stage_option"*
 
-    # Check if the stage file exists
-    if [ -f "$stage_file" ]; then
-        source "$stage_file" $@
-    else
-        print_message $RED "Error: Stage file '$stage_option' not found."
-        exit 1
-    fi
+  # Check if the stage file exists
+  if [ -f "$stage_file" ]; then
+    print_message $BLUE $INVERT "Running: '${stage_file}'"
+    source "$stage_file" $@
+  else
+    print_message $RED "Error: Stage file '$stage_option' not found."
+    exit 1
+  fi
 else
-    # Source all files in "install.d" folder
-    for file in $(dirname $0)/install.d/*.sh; do
-        source "$file" $@
-    done
+  # Source all files in "install.d" folder
+  for file in $(dirname $0)/install.d/*.sh; do
+    print_message $BLUE $INVERT "Running: '${file}'"
+    source "$file" $@
+  done
 fi
 
 print_message $GREEN $INVERT "Installation finished look out for orange messages for further instructions."
