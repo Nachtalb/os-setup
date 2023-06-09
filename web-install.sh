@@ -24,10 +24,7 @@ source <(curl -sSL "https://raw.githubusercontent.com/Nachtalb/os-setup/master/u
 
 # ------------------------------------------------------------------------------
 
-if [ "$(uname -r | cut -d '-' -f 3)" != "ARCH" ]; then
-    print_message $RED $INVERT "Error: This script is intended to run on Arch Linux only."
-    exit 1
-fi
+check_arch_linux
 
 # ------------------------------------------------------------------------------
 

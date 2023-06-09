@@ -26,3 +26,12 @@ file_to_oneline() {
   array=(cat $file)  # Convert file content to array
   IFS=" "; echo "${array[*]}"  # Join array elements into a single string
 }
+
+check_arch_linux() {
+    if [ "$(uname -r | cut -d '-' -f 3)" != "ARCH" ]; then
+        if [ ! -f /etc/os-release ] || ! grep -q "ID=arch" /etc/os-release; then
+            print_message $RED $INVERT "Error: This script is intended to run on Arch Linux only."
+            exit 1
+        fi
+    fi
+}
