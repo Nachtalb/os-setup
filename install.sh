@@ -38,4 +38,4 @@ else
     done
 fi
 
-print_message $GREEN "Installation finished look out for orange messages for further instructions."
+print_message $GREEN $INVERT "Installation finished look out for orange messages for further instructions."

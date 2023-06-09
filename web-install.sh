@@ -20,14 +20,16 @@ fi
 
 # ------------------------------------------------------------------------------
 
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+source <(curl -sSL "https://raw.githubusercontent.com/Nachtalb/os-setup/master/utils.sh")
 
-print_message() {
-    local color=$1
-    shift
-    echo -e "${color}$@${NC}"
-}
+# ------------------------------------------------------------------------------
+
+if [ "$(uname -r | cut -d '-' -f 3)" != "ARCH" ]; then
+    print_message $RED $INVERT "Error: This script is intended to run on Arch Linux only."
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
 
 noconfirm=""
 
@@ -35,7 +37,7 @@ if [[ " $* " == *" --noconfirm "* ]]; then
     noconfirm="--noconfirm"
 fi
 
-print_message $GREEN "Starting web-install script."
+print_message $GREEN $INVERT "Starting web-install script."
 
 print_message $GREEN "  Downloading installer..."
 sudo pacman -Sy git --needed $noconfirm
@@ -53,4 +55,4 @@ if [[ " $* " == *" --clean "* ]]; then
 fi
 
 cd "${wd}"
-print_message $GREEN "Installation completed successfully."
+print_message $GREEN $INVERT "Installation completed successfully."
