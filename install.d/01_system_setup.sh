@@ -22,7 +22,7 @@ print_message $GREEN "  Installing system dependencies..."
 if ! fakeroot -v paru >/dev/null 2>&1; then
   sudo pacman -Sy fakeroot-tcp --needed $noconfirm
 fi
-sudo pacman -Sy rustup base-devel expac fzf pacman-contrib --needed $noconfirm
+sudo pacman -Sy rustup base-devel wget expac fzf pacman-contrib --needed $noconfirm
 
 print_message $GREEN "  Setting Rust default version..."
 rustup default stable
