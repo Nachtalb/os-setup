@@ -12,6 +12,15 @@ chsh archie -s /usr/bin/fish
 print_message $GREEN "  Removing 'paru' directory..."
 rm -rf /home/archie/paru
 
+if [[ "$(uname -r)" == *icrosoft* ]]; then
+  print_message $GREEN "  Setting archie as default WSL user"
+  if ! grep -q "archie" /etc/wsl.conf; then
+    # If not, append the user configuration
+    echo "[user]" >> /etc/wsl.conf
+    echo "default=archie" >> /etc/wsl.conf
+  fi
+fi
+
 print_message $ORANGE "Setting password for 'archie'..."
 if [[ " $* " == *" --noconfirm "* ]]; then
   password=$(openssl rand -base64 6 | tr -dc 'a-zA-Z0-9' | head -c8)
