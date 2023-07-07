@@ -5,7 +5,7 @@ if [[ " $* " == *" --de "* ]]; then
   print_message $GREEN "Setting up desktop environment..."
 else
   print_message $ORANGE "Skipping desktop environment installation. Use --de to install the desktop environment."
-  exit
+  return
 fi
 print_message $GREEN "  Installing desktop dependencies..."
 
