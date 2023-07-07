@@ -19,7 +19,10 @@ sudo pacman -Sy archlinux-keyring $noconfirm
 sudo pacman -Syu $noconfirm
 
 print_message $GREEN "  Installing system dependencies..."
-sudo pacman -Sy rustup base-devel fakeroot expac fzf pacman-contrib --needed $noconfirm
+if ! fakeroot -v paru >/dev/null 2>&1; then
+  sudo pacman -Sy fakeroot-tcp --needed $noconfirm
+fi
+sudo pacman -Sy rustup base-devel expac fzf pacman-contrib --needed $noconfirm
 
 print_message $GREEN "  Setting Rust default version..."
 rustup default stable
