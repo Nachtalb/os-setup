@@ -29,8 +29,8 @@ su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which ruff-ls
 su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which xdg-open)\" \"bin/xdg-open\""
 
 # Run dotfiles_install_symlinks script
-print_message $GREEN "  Running dotfiles_install_symlinks script..."
-su archie -c "fish -c dotfiles_install_symlinks"
+print_message $GREEN "  Running dotfiles setup..."
+su archie -c "fish -c 'dotfiles setup'"
 
 # Run update-neovim-nightly.sh script
 print_message $GREEN "  Running update-neovim-nightly.sh script..."
