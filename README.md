@@ -9,6 +9,15 @@ the installation of essential packages, dotfiles, and a Neovim configuration.
 - ✨ Automated installation of dependencies for Arch Linux.
 - ✨ Easy setup of dotfiles from the [Nachtalb/dotfiles][dotfiles] repository.
 - ✨ Configuration of Neovim using the [Nachtalb/vimconfig][vimconfig].
+- ✨ Comprehensive toolkit pre-set and an option for a tailored
+  [Sway](https://github.com/Nachtalb/sway) desktop experience.
+
+## Tooling Insight
+
+Curious about the toolset that comes pre-configured with this setup? Dive into
+the [TOOLING.md](TOOLING.md) page to get a detailed overview of all the built-in
+tools, scripts, and utilities. Whether you're on Arch Linux or Arch in WSL,
+these handpicked and finely-tuned tools are crafted to elevate your experience.
 
 ## Installation
 
@@ -70,3 +79,10 @@ repository, the Neovim configuration from the [Nachtalb/vimconfig][vimconfig]
 
 [dotfiles]: https://github.com/Nachtalb/dotfiles
 [vimconfig]: https://github.com/Nachtalb/vimconfig
+
+## Contributions
+
+Dive into the OS Setup and share your insights! Whether you've discovered a
+groundbreaking tool, refined a configuration, or stumbled upon a quirky bug,
+your perspective is invaluable. Contribute via issues, PRs, or just by
+suggesting enhancements. Together, we'll shape a stellar setup.
