@@ -4,6 +4,12 @@ This repository provides scripts and configurations to set up a new Arch Linux
 installation with various dependencies and custom configurations. It includes
 the installation of essential packages, dotfiles, and a Neovim configuration.
 
+<p align="center">
+    <img src="./wsl-terminal-preview.png" alt="WSL Terminal Preview">
+    <br/>
+    WSL Terminal Preview
+</p>
+
 ## Features
 
 - ✨ Automated installation of dependencies for Arch Linux.
