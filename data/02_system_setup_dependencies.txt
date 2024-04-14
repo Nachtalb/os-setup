@@ -51,6 +51,7 @@ pacman-contrib
 pacman-mirrorlist
 plocate
 pyenv
+python312
 python-poetry
 python-poetry-plugin-export
 python-poetry-plugin-pre-commit
