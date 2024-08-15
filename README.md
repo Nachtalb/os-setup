@@ -36,7 +36,7 @@ For a quick installation without cloning the repository, you can use the
 following command:
 
 ```bash
-bash <(curl -L https://naa.gg/os-setup) --noconfirm
+bash <(curl -L https://raw.githubusercontent.com/Nachtalb/os-setup/master/web-install.sh) --noconfirm
 ```
 
 ⚡️ This command will automatically download and run the installation script,
