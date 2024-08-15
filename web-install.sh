@@ -35,6 +35,10 @@ if [[ " $* " == *" --noconfirm "* ]]; then
 fi
 
 print_message $GREEN $INVERT "Starting web-install script."
+print_message $GREEN "  Making sure we can use pacman..."
+pacman-key --init
+pacman-key --populate
+sudo pacman -Sy archlinux-keyring $noconfirm --needed
 
 print_message $GREEN "  Downloading installer..."
 sudo pacman -Sy git --needed $noconfirm
