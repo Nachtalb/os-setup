@@ -54,4 +54,4 @@ else
 fi
 
 print_message $GREEN "  Enabling git maintenance..."
-su archie -c "git maintenance start"
+su archie -c "git maintenance start 2>/dev/null || true"

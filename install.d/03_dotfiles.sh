@@ -23,7 +23,7 @@ su archie -c "cd $dotfiles_dir && poetry install"
 
 # Create symlinks
 print_message $GREEN "  Creating symlinks for black, isort, mypy, ruff, ruff-lsp, and xdg-open..."
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which defaultpoetry)\"    \"bin/defaultpoetry\""
+su archie -c "cd $dotfiles_dir && poetry run ln -fs \"\$(poetry run which defaultpoetry)\"    \"bin/defaultpoetry\""
 
 # Run dotfiles_install_symlinks script
 print_message $GREEN "  Running dotfiles setup..."
