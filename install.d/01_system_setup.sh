@@ -52,3 +52,6 @@ if ! command -v pacui >/dev/null 2>&1; then
 else
   print_message $GREEN " 'pacui' is already installed"
 fi
+
+print_message $GREEN "  Enabling git maintenance..."
+su archie -c "git maintenance start"
