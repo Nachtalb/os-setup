@@ -46,6 +46,7 @@ nodejs
 npm
 opencv
 openjpeg2
+openssh
 p7zip
 pacman-contrib
 pacman-mirrorlist
