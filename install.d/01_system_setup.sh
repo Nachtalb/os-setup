@@ -15,6 +15,8 @@ sed -i "s/.*ParallelDownloads.*/ParallelDownloads = 10/" /etc/pacman.conf
 sed -i "s/.*Color.*/Color/" /etc/pacman.conf
 
 print_message $GREEN "  Updating system..."
+pacman-key --init
+pacman-key --populate
 sudo pacman -Sy archlinux-keyring $noconfirm --needed
 sudo pacman -Syu $noconfirm
 
