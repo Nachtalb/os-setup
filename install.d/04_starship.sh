@@ -1,6 +1,8 @@
 #!/bin/bash
 source "$(dirname $0)/utils.sh"
 
+export NOTMUX=1
+
 print_message $GREEN "Setting up starship..."
 # Create ~/.config/fish/config.fish in case 03_dotfiles.sh wasn't run
 fish -c "exit"

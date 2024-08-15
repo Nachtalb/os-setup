@@ -1,6 +1,8 @@
 #!/bin/bash
 source "$(dirname $0)/utils.sh"
 
+export NOTMUX=1
+
 print_message $GREEN "Setting up dotfiles..."
 print_message $GREEN "  Downloading dotfiles from GitHub..."
 
@@ -19,14 +21,9 @@ su archie -c "git clone https://github.com/Nachtalb/dotfiles.git $dotfiles_dir"
 print_message $GREEN "  Installing dotfiles dependencies with Poetry..."
 su archie -c "cd $dotfiles_dir && poetry install"
 
-# Create symlinks for black, isort, mypy, ruff, ruff-lsp, and xdg-open
+# Create symlinks
 print_message $GREEN "  Creating symlinks for black, isort, mypy, ruff, ruff-lsp, and xdg-open..."
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which black)\"    \"bin/black\""
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which isort)\"    \"bin/isort\""
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which mypy)\"     \"bin/mypy\""
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which ruff)\"     \"bin/ruff\""
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which ruff-lsp)\" \"bin/ruff-lsp\""
-su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which xdg-open)\" \"bin/xdg-open\""
+su archie -c "cd $dotfiles_dir && poetry run ln -s \"\$(poetry run which defaultpoetry)\"    \"bin/defaultpoetry\""
 
 # Run dotfiles_install_symlinks script
 print_message $GREEN "  Running dotfiles setup..."

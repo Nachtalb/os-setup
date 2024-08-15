@@ -1,6 +1,8 @@
 #!/bin/bash
 source "$(dirname $0)/utils.sh"
 
+export NOTMUX=1
+
 print_message $GREEN "Setting up NEOVIM..."
 print_message $GREEN "  Downloading NEOVIM config from GitHub..."
 
@@ -22,10 +24,9 @@ print_message $GREEN "  Setting up NEOVIM, this may take a while"
 
 su archie -c "ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim"
 su archie -c "ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json"
-su archie -c "ln -sf ~/.vim/.vimrc ~/.vimrc"
-su archie -c 'nvim -i NONE -c "PlugInstall" -c "qa"'
-su archie -c 'nvim -i NONE -c "UpdateRemotePlugins" -c "qa"'
-su archie -c 'nvim -i NONE -c "CocUpdateSync" -c "qa"'
+su archie -c "ln -sf ~/.vim/config.vim ~/.vimrc"
+su archie -c 'nvim +PlugInstall +qa'
+su archie -c 'nvim +CocUpdateSync +PlugInstall +UpdateRemotePlugins +PlugUpgrade +PlugUpdate +TSUpdate +PlugDiff +qa'
 
 print_message $ORANGE "  You can start NEOVIM with either 'nvim' or 'vim' (auto load Session.vim if it exists)."
 print_message $ORANGE "  During the first start remaining dependencies will be installed automatically."
