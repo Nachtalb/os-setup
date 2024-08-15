@@ -11,7 +11,14 @@ dotfiles_dir="/home/archie/.config/fish"
 # Check if dotfiles directory already exists
 if [ -d "$dotfiles_dir" ]; then
   print_message $GREEN "  Backing up existing dotfiles directory..."
-  mv "$dotfiles_dir" "$dotfiles_dir.bak"
+
+  backup_number=1
+  while [ -d "${dotfiles_dir}.bak.${backup_number}" ]; do
+    ((backup_number++))
+  done
+
+  mv "$dotfiles_dir" "${dotfiles_dir}.bak.${backup_number}"
+  print_message $GREEN "  Backup created: ${dotfiles_dir}.bak.${backup_number}"
 fi
 
 # Clone the dotfiles repository
