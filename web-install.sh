@@ -20,7 +20,7 @@ fi
 
 # ------------------------------------------------------------------------------
 
-source <(curl -sSL "https://raw.githubusercontent.com/Nachtalb/os-setup/master/utils.sh?token=$(date +%s)")
+source <(curl -sSL "https://raw.githubusercontent.com/Nachtalb/os-setup/master/utils.sh")
 
 # ------------------------------------------------------------------------------
 
